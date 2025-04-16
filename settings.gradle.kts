@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "stc pay Ui Kit"
-include(":common-ui")
+include(":stcpay-ui-kit")

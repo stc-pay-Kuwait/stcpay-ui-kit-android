@@ -1,0 +1,28 @@
+<resources>
+    <string name="back">Back</string>
+    <string name="welcome_to_stc_pay">Welcome to stc Pay</string>
+    <string name="log_in_or_sign_up_to_experience_the_future_of_mobile_wallet">Log in or sign up to experience the future of mobile wallet</string>
+    <string name="kuwait_flag">Kuwait Flag</string>
+    <string name="Continue">Continue</string>
+    <string name="faster">Faster</string>
+    <string name="kuwait_mobile_id">Kuwait Mobile ID هويتي</string>
+    <string name="use_your_kuwait_mobile_id_app">Use your Kuwait Mobile ID app </string>
+    <string name="best_value">Best Value</string>
+    <string name="elite_card">Elite Card</string>
+    <string name="upto_five_percent_cashback">Up to 5% cashbacks</string>
+    <string name="airport_lounge_access">Airport lounge access</string>
+    <string name="view_all_benefits">View all benefits</string>
+    <string name="approve_the_request_on_kuwait_mobile_id">Approve the Request on Kuwait Mobile ID هويتي</string>
+    <string name="login_to_the_kuwait_mobile_id_app_and_approve_the_verification_request">Login to the Kuwait Mobile ID app and approve the verification request.</string>
+    <string name="ok">OK</string>
+    <string name="request_a_new_code_in">Request a new code in</string>
+    <string name="remaining_time">Remaining time</string>
+    <string name="normal_text">Normal Text</string>
+    <string name="phone_number">Phone number</string>
+    <string name="email">Email</string>
+    <string name="johndoe_stcpay_com_bh">johndoe@stcpay.com.bh</string>
+    <string name="civil_id_number">Civil ID number</string>
+
+
+
+</resources>
