@@ -25,9 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.stcpay.uikit.theme.BorderDisabledSecondary
 import com.stcpay.uikit.theme.Dimensions
+import com.stcpay.uikit.theme.White
 
 @Composable
-fun SingleStepProgressIndicator(list: List<StepProgressIndicator> = listOf()) {
+fun SingleStepProgressIndicator(
+    list: List<StepProgressIndicator> = listOf()
+) {
     LazyColumn {
         items(list) {
             ConstraintLayout {
@@ -109,7 +112,7 @@ private fun Circle(
                 draw(
                     size = Size(size.toPx() - tickDifference, size.toPx() - tickDifference),
                     alpha = 1f,
-                    colorFilter = ColorFilter.tint(Color.White)
+                    colorFilter = ColorFilter.tint(White)
                 )
             }
         } else {

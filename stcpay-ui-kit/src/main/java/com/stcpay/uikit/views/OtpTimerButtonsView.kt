@@ -1,6 +1,7 @@
 package com.stcpay.uikit.views
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -25,19 +26,26 @@ import com.stcpay.uikit.R
 fun ColumnScope.OtpTimerButtonsView(
     mElapsedTime: Long,
     @StringRes text : Int = R.string.request_a_new_code_in,
-    textAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
+    textAlignment: Alignment.Horizontal = Alignment.Start,
     onClick: () -> Unit
 ) {
     if (mElapsedTime == 0L) {
-        TextButton(
-            modifier = Modifier.align(textAlignment), onClick = onClick
-        ) {
-            Text(
-                textAlign = TextAlign.Center,
-                text = "Request a new code",
-                style = MaterialTheme.typography.titleSmall
-            )
-        }
+        Text(
+            modifier = Modifier.clickable(onClick = onClick),
+            text = buildAnnotatedString {
+                append(stringResource(R.string.didn_t_get_a_code))
+
+                withStyle(
+                    style = SpanStyle(
+                        color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.W500
+                    )
+                ) {
+                    append(" $mElapsedTime ")
+                }
+                append(stringResource(R.string.resend))
+            },
+            style = MaterialTheme.typography.titleSmall
+        )
     } else {
         Text(
             modifier = Modifier.align(textAlignment), text = buildAnnotatedString {
@@ -48,9 +56,8 @@ fun ColumnScope.OtpTimerButtonsView(
                         color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.W500
                     )
                 ) {
-                    append(" $mElapsedTime ")
+                    append(" $mElapsedTime s")
                 }
-                append("s")
             }, style = MaterialTheme.typography.titleSmall
         )
     }

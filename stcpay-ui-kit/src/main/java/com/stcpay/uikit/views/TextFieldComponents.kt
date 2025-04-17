@@ -7,7 +7,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.stcpay.uikit.R
@@ -43,7 +46,8 @@ fun InputTextField(
 ) {
     Column {
         if (label != null) {
-            Text(label)
+            Text(label, style = MaterialTheme.typography.titleSmall)
+            Spacer(Modifier.height(Dimensions.dp8))
         }
         TextField(
             modifier = Modifier
@@ -56,7 +60,10 @@ fun InputTextField(
                 ),
             placeholder = {
                 if (placeholder != null) {
-                    Text(placeholder, style = MaterialTheme.typography.titleSmall)
+                    Text(
+                        placeholder,
+                        style = MaterialTheme.typography.headlineMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+                    )
                 }
             },
             leadingIcon = leadingComposable,
@@ -69,9 +76,8 @@ fun InputTextField(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
             ),
-            textStyle = MaterialTheme.typography.titleSmall.copy(
-
-                //Todo Gulraiz Add Color
+            textStyle = MaterialTheme.typography.headlineMedium.copy(
+                color = MaterialTheme.colorScheme.onSurface
             ),
             keyboardOptions = keyboardOptions
         )
@@ -92,12 +98,12 @@ fun PhoneNumberTextField(
         label = label,
         placeholder = placeholder,
         onValueChange = onValueChange,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         leadingComposable = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(Dimensions.dp5),
-                horizontalArrangement = Arrangement.spacedBy(Dimensions.dp5)
+                modifier = Modifier.padding(
+                    horizontal = Dimensions.dp16, vertical = Dimensions.dp12
+                ), horizontalArrangement = Arrangement.spacedBy(Dimensions.dp8)
             ) {
                 if (id != null) {
                     Image(
@@ -108,13 +114,15 @@ fun PhoneNumberTextField(
                 if (countryCode != null) {
                     Text(
                         countryCode,
-                        style = MaterialTheme.typography.titleSmall.copy(
-                            color = onSurface
-                        )
+                        style = MaterialTheme.typography.titleSmall.copy(MaterialTheme.colorScheme.onSurface)
                     )
                 }
             }
-        }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Phone,
+            imeAction = ImeAction.Done
+        )
     )
 }
 
@@ -130,15 +138,11 @@ fun EmailTextField(
         label = label,
         placeholder = placeholder,
         onValueChange = onValueChange,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         leadingComposable = {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(
-                    horizontal = Dimensions.dp16,
-                    vertical = Dimensions.dp12
-                ),
-                horizontalArrangement = Arrangement.spacedBy(Dimensions.dp8)
+                verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(
+                    horizontal = Dimensions.dp16, vertical = Dimensions.dp12
+                ), horizontalArrangement = Arrangement.spacedBy(Dimensions.dp8)
             ) {
                 Icon(
                     Icons.Outlined.Email,
@@ -146,7 +150,11 @@ fun EmailTextField(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
-        }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Email,
+            imeAction = ImeAction.Done
+        )
     )
 }
 
@@ -162,8 +170,60 @@ fun CivilIdField(
         label = label,
         placeholder = placeholder,
         onValueChange = onValueChange,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Done
+        )
     )
 }
+@Composable
+fun AmountTextField(
+    value: String,
+    label: String? = stringResource(R.string.average_monthly_remittances),
+    placeholder: String? = stringResource(R.string.enter_amount_here),
+    currencyString: String = stringResource(R.string.kwd),
+    onValueChange: (String) -> Unit
+) {
+    Column {
+        if (label != null) {
+            Text(label, style = MaterialTheme.typography.titleSmall)
+            Spacer(Modifier.height(Dimensions.dp8))
+        }
+        TextField(modifier = Modifier
+            .fillMaxWidth()
+            .border(
+                border = BorderStroke(Dimensions.dp1, MaterialTheme.colorScheme.outline),
+                shape = RoundedCornerShape(
+                    Dimensions.dp8,
+                )
+            )
+            .padding(
+                horizontal = Dimensions.dp16
+            ), placeholder = {
+            if (placeholder != null) {
+                Text(
+                    placeholder,
+                    style = MaterialTheme.typography.headlineMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+                )
+            }
+        }, leadingIcon = {
+            Text(currencyString, style = MaterialTheme.typography.headlineMedium)
+        }, value = value, onValueChange = onValueChange, colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
+        ), textStyle = MaterialTheme.typography.headlineMedium.copy(
+            color = MaterialTheme.colorScheme.onSurface
+        ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
+            )
+        )
+    }
+}
+
 
 
 @Preview(showSystemUi = true)

@@ -21,3 +21,6 @@ val White = Color(0xFFFFFFFF)
 val SelectStcCardTextColor = Color(0xFF535862)
 val AppVersionColor = Color(0xFF4F008C)
 val TagBorderColor = Color(0xFF7233A3)
+//OTP view
+val gray = Color(0xffBCBCB9)
+val secondaryDarkColor = Color(0xff00925f)

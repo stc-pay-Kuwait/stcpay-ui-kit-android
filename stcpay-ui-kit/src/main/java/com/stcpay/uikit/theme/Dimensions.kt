@@ -13,17 +13,15 @@ object Dimensions {
     val dp8 = 8.dp
     val dp10 = 10.dp
     val dp12 = 12.dp
+    val dp14 = 14.dp
     val dp16 = 16.dp
     val dp20 = 20.dp
     val dp24 = 24.dp
     val dp26 = 26.dp
     val dp30 = 30.dp
-    val dp38 = 38.dp
     val dp40 = 40.dp
     val dp46 = 46.dp
     val dp48 = 48.dp
     val dp56 = 56.dp
     val dp64 = 64.dp
 }
-
-//request a code

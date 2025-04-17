@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,14 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.stcpay.uikit.theme.BorderDisabledSecondary
 import com.stcpay.uikit.theme.Dimensions
-import com.stcpay.uikit.theme.Dimensions.dp1
-import com.stcpay.uikit.theme.Dimensions.dp16
-import com.stcpay.uikit.theme.Dimensions.dp20
-import com.stcpay.uikit.theme.Dimensions.dp24
-import com.stcpay.uikit.theme.Dimensions.dp40
-import com.stcpay.uikit.theme.Dimensions.dp48
-import com.stcpay.uikit.theme.Dimensions.dp5
-import com.stcpay.uikit.theme.Dimensions.dp6
 import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.theme.SelectStcCardTextColor
 import com.stcpay.uikit.R
@@ -54,12 +47,14 @@ import com.stcpay.uikit.language.LocaleManager
 
 @Composable
 fun BaseAppBar(
-    title: String = "", subtitle: String = "",
+    title: String = "",
+    subtitle: String = "",
+    boldText: String? = null,
     leadingComposable: @Composable ((modifier: Modifier) -> Unit)? = null,
     trailingComposable: @Composable ((modifier: Modifier) -> Unit)? = null,
     onClickLeading: (() -> Unit)? = null,
     onClickTrailing: (() -> Unit)? = null,
-    space: Dp = dp40
+    space: Dp = Dimensions.dp40
 ) {
     Column {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -79,7 +74,7 @@ fun BaseAppBar(
             }
         }
         Spacer(modifier = Modifier.height(space))
-        TitleSubtitle(title, subtitle)
+        TitleSubtitle(title, subtitle, boldText)
     }
 }
 
@@ -105,9 +100,9 @@ fun WelcomeScreenAppBar(languageViewModel: LanguageViewModel) {
     }
 
     BaseAppBar(
-        localizedContext.getString(R.string.welcome_to_stc_pay),
-        localizedContext.getString(R.string.log_in_or_sign_up_to_experience_the_future_of_mobile_wallet),
-        {
+        title = localizedContext.getString(R.string.welcome_to_stc_pay),
+        subtitle = localizedContext.getString(R.string.log_in_or_sign_up_to_experience_the_future_of_mobile_wallet),
+        leadingComposable = {
             TextButton(onClick = {
                 showSheet = true
             }) {
@@ -118,12 +113,6 @@ fun WelcomeScreenAppBar(languageViewModel: LanguageViewModel) {
             }
 
         },
-//        {
-//            Text(
-//                "Login",
-//                style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary)
-//            )
-//        },
         onClickLeading = {},
         onClickTrailing = {}
     )
@@ -133,12 +122,15 @@ fun WelcomeScreenAppBar(languageViewModel: LanguageViewModel) {
 fun CommonAppBar(
     title: String,
     subtitle: String,
+    boldText: String? = null,
+    leadingIcon: ImageVector? = Icons.AutoMirrored.Default.ArrowBack,
+    trailingIcon: ImageVector? = Icons.Default.MoreVert,
     onClickLeading: (() -> Unit)? = null
 ) {
     BaseAppBar(
-        title,
-        subtitle,
-        {
+        title = title,
+        subtitle = subtitle,
+       leadingComposable =  {
             Icon(
                 Icons.AutoMirrored.Default.ArrowBack,
                 stringResource(R.string.back),
@@ -149,7 +141,7 @@ fun CommonAppBar(
                 }
             )
         },
-        {
+        trailingComposable = {
             Icon(
                 Icons.Default.MoreVert,
                 stringResource(R.string.back),
@@ -176,35 +168,35 @@ fun SelectStcPayCardAppBar(
 
             Column(
                 modifier = Modifier
-                    .size(dp48)
-                    .clip(RoundedCornerShape(dp5))
+                    .size(Dimensions.dp48)
+                    .clip(RoundedCornerShape(Dimensions.dp5))
                     .border(
-                        width = dp1,
+                        width = Dimensions.dp1,
                         color = BorderDisabledSecondary,
-                        shape = RoundedCornerShape(dp6)
+                        shape = RoundedCornerShape(Dimensions.dp6)
                     )
-                    .padding(vertical = dp16),
+                    .padding(vertical = Dimensions.dp16),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
                     painter = painterResource(leadingIcon),
                     contentDescription = null,
-                    modifier = Modifier.width(dp20),
+                    modifier = Modifier.width(Dimensions.dp20),
                 )
             }
 
 
         },
         onClickLeading = {},
-        space = dp24
+        space = Dimensions.dp24
     )
 
 }
 
 @Composable
 fun AppBarSpacer() {
-    Spacer(Modifier.height(dp40))
+    Spacer(Modifier.height(Dimensions.dp40))
 }
 
 

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -36,23 +37,26 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.stcpay.uikit.theme.Dimensions
 import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.theme.White
+import com.stcpay.uikit.theme.gray
 import com.stcpay.uikit.theme.onSurface
+import com.stcpay.uikit.theme.secondaryDarkColor
 
 
 const val OTP_VIEW_TYPE_UNDERLINE = 1
 const val OTP_VIEW_TYPE_BORDER = 2
 
-val PIN_VIEW_CONTAINER_SIZE = 48.dp
+val PIN_VIEW_CONTAINER_SIZE = 60.dp
 
 @Composable
 fun OtpView(
     modifier: Modifier = Modifier,
     otpText: String = "",
-    borderColor: Color = MaterialTheme.colorScheme.outline,
-    charColor: Color = onSurface,
-    charBackground: Color = White,
+    borderColor: Color = secondaryDarkColor,
+    charColor: Color = White,
+    charBackground: Color = secondaryDarkColor,
     charSize: TextUnit = 16.sp,
     containerSize: Dp = PIN_VIEW_CONTAINER_SIZE,
     spacing: Dp = 2.dp,
@@ -136,10 +140,10 @@ private fun CharView(
         Modifier
             .border(
                 width = 1.dp,
-                color = if (enabled) borderColor else MaterialTheme.colorScheme.primary,
-                shape = MaterialTheme.shapes.medium
+                color = if (enabled) borderColor else gray,
+                shape = RoundedCornerShape(Dimensions.dp4)
             )
-            .clip(MaterialTheme.shapes.medium)
+            .clip(RoundedCornerShape(Dimensions.dp4))
             .background(
                 if (char.isEmpty() ||
                     char == "|"
@@ -198,13 +202,13 @@ private fun CharView(
 }
 
 
-@Preview(showSystemUi = true)
-@Composable
-fun ShowOtpView() {
-    StcPayTheme {
-        OtpView(
-            otpText = "123",
-            isFocused = true
-        ) {}
-    }
-}
+//@Preview(showSystemUi = true)
+//@Composable
+//fun ShowOtpView() {
+//    StcPayTheme {
+//        OtpView(
+//            otpText = "123",
+//            isFocused = true
+//        ) {}
+//    }
+//}

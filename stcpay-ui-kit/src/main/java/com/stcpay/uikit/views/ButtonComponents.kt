@@ -24,14 +24,15 @@ import com.stcpay.uikit.theme.Dimensions
 import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.theme.PrimaryButtonBorderColor
 import com.stcpay.uikit.R
+import com.stcpay.uikit.theme.White
 
 
 @Composable
-private fun TextForButtons(text: String) {
+private fun TextForButtons(color : Color = White,text: String) {
     Text(
         modifier = Modifier.padding(Dimensions.dp12),
         text = text,
-        style = MaterialTheme.typography.bodyMedium,
+        style = MaterialTheme.typography.bodyMedium.copy(color = color),
     )
 }
 
@@ -56,7 +57,7 @@ fun PrimaryButton(
             containerColor = containerColor, contentColor = contentColor
         )
     ) {
-        TextForButtons(text)
+        TextForButtons(contentColor,text)
     }
 }
 
@@ -73,7 +74,7 @@ fun SecondaryButton(
         elevation = ButtonDefaults.filledTonalButtonElevation(0.dp),
         border = BorderStroke(1.dp, color), onClick = onClick
     ) {
-        TextForButtons(text)
+        TextForButtons(color,text)
     }
 }
 

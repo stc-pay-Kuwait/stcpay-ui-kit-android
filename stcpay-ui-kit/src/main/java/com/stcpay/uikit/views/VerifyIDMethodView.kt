@@ -28,29 +28,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stcpay.uikit.R
 import com.stcpay.uikit.theme.AppVersionColor
 import com.stcpay.uikit.theme.Dimensions
-import com.stcpay.uikit.theme.Dimensions.dp0
-import com.stcpay.uikit.theme.Dimensions.dp1
-import com.stcpay.uikit.theme.Dimensions.dp10
-import com.stcpay.uikit.theme.Dimensions.dp16
-import com.stcpay.uikit.theme.Dimensions.dp20
-import com.stcpay.uikit.theme.Dimensions.dp4
-import com.stcpay.uikit.theme.Dimensions.dp8
-import com.stcpay.uikit.theme.StcPayTheme
-import com.stcpay.uikit.theme.Dimensions.dp5
-import com.stcpay.uikit.theme.Dimensions.dp64
-import com.stcpay.uikit.theme.Dimensions.dp7
 import com.stcpay.uikit.theme.PrimaryColor
+import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.theme.TagBorderColor
 import com.stcpay.uikit.theme.TextColor
 import com.stcpay.uikit.theme.TextPrimaryColor
@@ -78,10 +70,10 @@ fun VerifyIDMethodView(
                         onClick()
                     }
                 )
-                .padding(top = if (tagText != null) dp16 else dp0)
+                .padding(top = if (tagText != null) Dimensions.dp16 else Dimensions.dp0)
                 .align(Alignment.TopStart),
-            shape = RoundedCornerShape(dp10),
-            border = BorderStroke(dp1, MaterialTheme.colorScheme.outline),
+            shape = RoundedCornerShape(Dimensions.dp10),
+            border = BorderStroke(Dimensions.dp1, MaterialTheme.colorScheme.outline),
             colors = CardDefaults.cardColors(
                 containerColor = White
             )
@@ -90,19 +82,19 @@ fun VerifyIDMethodView(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dp20),
+                    .padding(Dimensions.dp20),
                 verticalAlignment = Alignment.Top
             ) {
 
                 Image(
                     painter = painterResource(img),
                     contentDescription = null,
-                    modifier = Modifier.width(dp64),
-                    contentScale = ContentScale.FillWidth
+                    modifier = Modifier.width(Dimensions.dp64),
+                    contentScale = ContentScale.Fit
                 )
 
 
-                Spacer(modifier = Modifier.width(dp16))
+                Spacer(modifier = Modifier.width(Dimensions.dp16))
                 Column {
                     Row(
                         modifier = Modifier
@@ -120,7 +112,7 @@ fun VerifyIDMethodView(
                                 .fillMaxWidth()
                                 .weight(1f)
                         )
-                        Spacer(modifier = Modifier.width(dp4))
+                        Spacer(modifier = Modifier.width(Dimensions.dp4))
 
                         Icon(
                             painter = painterResource(R.drawable.ic_forward),
@@ -128,7 +120,7 @@ fun VerifyIDMethodView(
                             tint = PrimaryColor
                         )
                     }
-                    Spacer(modifier = Modifier.height(dp8))
+                    Spacer(modifier = Modifier.height(Dimensions.dp8))
                     Text(
                         text = stringResource(subTitle),
                         style = MaterialTheme.typography.headlineSmall.copy(
@@ -150,7 +142,13 @@ fun VerifyIDMethodView(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.End
             ) {
-                TopTag(text = tagText)
+                TopTag(
+                    text = tagText,
+                    borderColor = AppVersionColor,
+                    backgroundColor = AppVersionColor,
+                    textColor = White,
+                    radius = Dimensions.dp5
+                )
             }
         }
     }
@@ -158,15 +156,16 @@ fun VerifyIDMethodView(
 
 @Composable
 fun TopTag(
-    @StringRes text: Int
+    @StringRes text: Int,
+    borderColor: Color = AppVersionColor,
+    backgroundColor: Color = AppVersionColor,
+    textColor: Color = White,
+    radius: Dp = Dimensions.dp5
 ) {
     Box(
         Modifier
-            .padding(end = dp16)
-            .border(
-                BorderStroke(Dimensions.dp2, color = TagBorderColor),
-                shape = RoundedCornerShape(dp5)
-            )
+            .padding(end = Dimensions.dp16)
+            .border(BorderStroke(Dimensions.dp1, borderColor), shape = RoundedCornerShape(radius)),
     ) {
         Text(
             text = stringResource(text),
@@ -174,16 +173,10 @@ fun TopTag(
                 fontSize = 11.sp,
                 lineHeight = 18.sp
             ),
-            color = White,
+            color = textColor,
             modifier = Modifier
-                .background(
-                    color = AppVersionColor,
-                    shape = RoundedCornerShape(dp5)
-                )
-                .padding(
-                    horizontal = dp10,
-                    vertical = dp7
-                ),
+                .background(backgroundColor, RoundedCornerShape(radius))
+                .padding(horizontal = Dimensions.dp10, vertical = Dimensions.dp7),
             textAlign = TextAlign.Center
         )
     }
@@ -196,7 +189,7 @@ private fun ShowKuwaitMobileIDCard(modifier: Modifier = Modifier) {
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(dp16),
+                .padding(Dimensions.dp16),
             verticalArrangement = Arrangement.Center
         ) {
             VerifyIDMethodView(

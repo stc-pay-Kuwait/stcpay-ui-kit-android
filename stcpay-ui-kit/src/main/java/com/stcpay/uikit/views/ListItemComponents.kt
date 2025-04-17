@@ -50,18 +50,3 @@ fun ImageTitleDescriptionItem(
     }
 
 }
-
-//@Preview(showSystemUi = true)
-//@Composable
-//private fun ListItemComponentsPreview() {
-//    LocalStcKuwaitTheme {
-//        Column(Modifier.padding(Dimensions.dp16)) {
-//            ImageTitleDescriptionItem(
-//                R.drawable.security_icon,
-//                title = stringResource(R.string.your_trusted_device),
-//                description = stringResource(R.string.iphone_16_pro_max_this_device)
-//            )
-//
-//        }
-//    }
-//}
