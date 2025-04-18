@@ -13,14 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,15 +34,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import com.stcpay.uikit.theme.BorderDisabledSecondary
-import com.stcpay.uikit.theme.Dimensions
-import com.stcpay.uikit.theme.StcPayTheme
-import com.stcpay.uikit.theme.SelectStcCardTextColor
 import com.stcpay.uikit.R
 import com.stcpay.uikit.language.LanguageBottomSheet
 import com.stcpay.uikit.language.LanguageViewModel
 import com.stcpay.uikit.language.LocalAppLocale
 import com.stcpay.uikit.language.LocaleManager
+import com.stcpay.uikit.theme.BorderDisabledSecondary
+import com.stcpay.uikit.theme.Dimensions
+import com.stcpay.uikit.theme.SelectStcCardTextColor
+import com.stcpay.uikit.theme.StcPayTheme
 
 @Composable
 fun BaseAppBar(
@@ -57,6 +56,7 @@ fun BaseAppBar(
     space: Dp = Dimensions.dp40
 ) {
     Column {
+        Spacer(Modifier.height(Dimensions.dp24))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             if (leadingComposable != null) {
                 leadingComposable(Modifier.clickable {
@@ -130,7 +130,7 @@ fun CommonAppBar(
     BaseAppBar(
         title = title,
         subtitle = subtitle,
-       leadingComposable =  {
+        leadingComposable = {
             Icon(
                 Icons.AutoMirrored.Default.ArrowBack,
                 stringResource(R.string.back),
@@ -206,11 +206,10 @@ private fun AppBarComponentsPreview(modifier: Modifier = Modifier) {
     StcPayTheme {
         Column(Modifier.padding(Dimensions.dp16)) {
 //            WelcomeScreenAppBar()
-            HorizontalDivider(thickness = Dimensions.dp4)
-//            CommonAppBar(
-//                stringResource(R.string.let_s_get_started),
-//                stringResource(R.string.set_up_your_stc_pay_account_in_three_simple_steps)
-//            )
+            CommonAppBar(
+                stringResource(R.string.let_s_get_started),
+                stringResource(R.string.set_up_your_stc_pay_account_in_three_simple_steps)
+            )
 //            SelectStcPayCardAppBar(
 //                stringResource(R.string.let_s_get_started),
 //                stringResource(R.string.set_up_your_stc_pay_account_in_three_simple_steps)

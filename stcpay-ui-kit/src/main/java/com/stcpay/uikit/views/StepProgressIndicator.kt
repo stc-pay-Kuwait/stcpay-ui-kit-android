@@ -13,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -66,7 +65,7 @@ fun SingleStepProgressIndicator(
                 )
                 Text(
                     modifier = Modifier
-                        .padding(top = Dimensions.dp12, start = Dimensions.dp12)
+                        .padding(horizontal = Dimensions.dp12, vertical = Dimensions.dp16)
                         .constrainAs(descriptionText) {
                             top.linkTo(titleText.bottom)
                             start.linkTo(circle.end)

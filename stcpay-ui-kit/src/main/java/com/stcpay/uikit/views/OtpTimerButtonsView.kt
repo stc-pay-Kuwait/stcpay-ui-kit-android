@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,16 +15,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.R
+import com.stcpay.uikit.theme.StcPayTheme
+import com.stcpay.uikit.utils.formatMillisecondsToMMSS
 
 @Composable
 fun ColumnScope.OtpTimerButtonsView(
     mElapsedTime: Long,
-    @StringRes text : Int = R.string.request_a_new_code_in,
+    @StringRes text: Int = R.string.request_a_new_code_in,
     textAlignment: Alignment.Horizontal = Alignment.Start,
     onClick: () -> Unit
 ) {
@@ -40,7 +39,7 @@ fun ColumnScope.OtpTimerButtonsView(
                         color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.W500
                     )
                 ) {
-                    append(" $mElapsedTime ")
+                    append(" ${mElapsedTime} ")
                 }
                 append(stringResource(R.string.resend))
             },
@@ -56,7 +55,7 @@ fun ColumnScope.OtpTimerButtonsView(
                         color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.W500
                     )
                 ) {
-                    append(" $mElapsedTime s")
+                    append(" ${mElapsedTime.formatMillisecondsToMMSS()} s")
                 }
             }, style = MaterialTheme.typography.titleSmall
         )
@@ -72,7 +71,7 @@ fun OtpTimerButtonPreview(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            OtpTimerButtonsView(10) { }
+            OtpTimerButtonsView(1000) { }
         }
     }
 }

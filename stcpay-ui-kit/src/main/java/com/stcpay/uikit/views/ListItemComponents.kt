@@ -42,7 +42,7 @@ fun ImageTitleDescriptionItem(
             if (title != null) {
                 Text(title, style = MaterialTheme.typography.bodyMedium)
             }
-            Spacer(Modifier.height(Dimensions.dp4))
+            Spacer(Modifier.height(Dimensions.dp8))
             if (description != null) {
                 Text(description, style = MaterialTheme.typography.titleSmall)
             }
@@ -50,3 +50,4 @@ fun ImageTitleDescriptionItem(
     }
 
 }
+

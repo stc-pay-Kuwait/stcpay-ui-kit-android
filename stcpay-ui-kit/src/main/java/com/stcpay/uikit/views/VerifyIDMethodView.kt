@@ -43,7 +43,6 @@ import com.stcpay.uikit.theme.AppVersionColor
 import com.stcpay.uikit.theme.Dimensions
 import com.stcpay.uikit.theme.PrimaryColor
 import com.stcpay.uikit.theme.StcPayTheme
-import com.stcpay.uikit.theme.TagBorderColor
 import com.stcpay.uikit.theme.TextColor
 import com.stcpay.uikit.theme.TextPrimaryColor
 import com.stcpay.uikit.theme.White
@@ -53,8 +52,8 @@ fun VerifyIDMethodView(
     @DrawableRes img: Int,
     @StringRes title: Int,
     @StringRes subTitle: Int,
-    @StringRes tagText : Int? = null,
-    onClick : ()->Unit
+    @StringRes tagText: Int? = null,
+    onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -63,7 +62,7 @@ fun VerifyIDMethodView(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable (
+                .clickable(
                     indication = null,
                     interactionSource = interactionSource,
                     onClick = {
@@ -83,7 +82,7 @@ fun VerifyIDMethodView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(Dimensions.dp20),
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Image(
@@ -196,9 +195,8 @@ private fun ShowKuwaitMobileIDCard(modifier: Modifier = Modifier) {
                 R.drawable.ic_kuwait_mobile_id,
                 R.string.kuwait_mobile_id,
                 R.string.use_your_kuwait_mobile_id_app,
-                R.string.faster,
-                {}
-            )
+                R.string.faster
+            ) {}
 
             Spacer(Modifier.height(30.dp))
 
@@ -206,9 +204,8 @@ private fun ShowKuwaitMobileIDCard(modifier: Modifier = Modifier) {
                 R.drawable.img_civil_id,
                 R.string.kuwait_mobile_id,
                 R.string.use_your_kuwait_mobile_id_app,
-                null,
-                {}
-                )
+                null
+            ) {}
         }
     }
 }

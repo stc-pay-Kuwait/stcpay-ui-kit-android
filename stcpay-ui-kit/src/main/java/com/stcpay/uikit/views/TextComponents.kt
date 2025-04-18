@@ -37,7 +37,7 @@ import com.stcpay.uikit.theme.SelectStcCardTextColor
 fun TitleSubtitle(titleText: String, subtitleText: String, boldText: String? = null) {
     Column {
         Text(titleText, style = MaterialTheme.typography.headlineLarge)
-        Spacer(Modifier.height(Dimensions.dp8))
+        Spacer(Modifier.height(Dimensions.dp16))
         Text(
             buildAnnotatedString {
                 append(subtitleText)
