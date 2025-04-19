@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -20,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.stcpay.uikit.R
 import com.stcpay.uikit.theme.Dimensions
 import com.stcpay.uikit.theme.StcPayTheme
+import com.stcpay.uikit.theme.dropDownIconColor
 
 @Composable
 fun CustomDropdown(
@@ -35,6 +39,7 @@ fun CustomDropdown(
     value: String = placeholder ?: "",
     @DrawableRes trailingImage: Int? = null,
     onTrailingImageClick: (() -> Unit)? = null,
+    iconColor : Color = dropDownIconColor,
     onDropdownClick: () -> Unit
 ) {
     Column {
@@ -45,16 +50,17 @@ fun CustomDropdown(
                 Text(label, style = MaterialTheme.typography.titleSmall)
                 if (trailingImage != null) {
                     Spacer(Modifier.width(Dimensions.dp2))
-                    Image(
+                    Icon(
                         painter = painterResource(trailingImage),
                         contentDescription = stringResource(
                             R.string.help
                         ),
-                        modifier = Modifier.clickable {
+                        modifier = Modifier.size(16.dp).clickable {
                             if (onTrailingImageClick != null) {
                                 onTrailingImageClick()
                             }
-                        }
+                        },
+                        tint = iconColor
                     )
                 }
             }
@@ -67,7 +73,7 @@ fun CustomDropdown(
                         shape = RoundedCornerShape(Dimensions.dp10)
                     )
                     .fillMaxWidth()
-                    .padding(horizontal = Dimensions.dp16, vertical = Dimensions.dp12)
+                    .padding(horizontal = Dimensions.dp16, vertical = Dimensions.dp16)
                     .clickable(onClick = onDropdownClick),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -81,7 +87,6 @@ fun CustomDropdown(
                     value,
                     tint = MaterialTheme.colorScheme.onSurface
                 )
-
             }
         }
 

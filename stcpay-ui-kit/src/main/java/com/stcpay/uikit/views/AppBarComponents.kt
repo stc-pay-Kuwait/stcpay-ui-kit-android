@@ -130,24 +130,28 @@ fun CommonAppBar(
     BaseAppBar(
         title = title,
         subtitle = subtitle,
+        boldText = boldText,
         leadingComposable = {
-            Icon(
-                Icons.AutoMirrored.Default.ArrowBack,
-                stringResource(R.string.back),
-                tint = SelectStcCardTextColor,
-                modifier = Modifier.clickable {
-                    if (onClickLeading != null)
-                        onClickLeading()
-                }
-            )
+            if (leadingIcon != null) {
+                Icon(
+                    leadingIcon,
+                    stringResource(R.string.back),
+                    tint = SelectStcCardTextColor,
+                    modifier = Modifier.clickable {
+                        if (onClickLeading != null)
+                            onClickLeading()
+                    }
+                )
+            }
         },
         trailingComposable = {
-            Icon(
-                Icons.Default.MoreVert,
-                stringResource(R.string.back),
-                tint = SelectStcCardTextColor
-            )
-
+            if(trailingIcon != null){
+                Icon(
+                    trailingIcon,
+                    stringResource(R.string.back),
+                    tint = SelectStcCardTextColor
+                )
+            }
         },
         onClickLeading = onClickLeading,
         onClickTrailing = {}

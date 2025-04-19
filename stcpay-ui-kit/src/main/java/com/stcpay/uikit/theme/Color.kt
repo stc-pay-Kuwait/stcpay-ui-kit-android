@@ -24,3 +24,4 @@ val TagBorderColor = Color(0xFF7233A3)
 //Colors for OTP view
 val gray = Color(0xffBCBCB9)
 val secondaryDarkColor = Color(0xff00925f)
+val dropDownIconColor = Color(0xFFA4A7AE)
