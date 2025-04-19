@@ -127,6 +127,6 @@
     <string name="account_creation">Account creation</string>
     <string name="sit_back_and_relax_this_can_take_up_to_2_minutes_to_complete">Sit back and relax, this can take up to 2 minutes to complete</string>
     <string name="didn_t_get_a_code">Didn’t get a code?</string>
-    <string name="resend">Resend</string>
+    <string name="resend"> Resend</string>
 
 </resources>

@@ -39,9 +39,8 @@ fun ColumnScope.OtpTimerButtonsView(
                         color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.W500
                     )
                 ) {
-                    append(" ${mElapsedTime} ")
+                    append(stringResource(R.string.resend))
                 }
-                append(stringResource(R.string.resend))
             },
             style = MaterialTheme.typography.titleSmall
         )

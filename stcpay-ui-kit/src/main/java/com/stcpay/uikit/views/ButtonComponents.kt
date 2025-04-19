@@ -1,20 +1,27 @@
 package com.stcpay.uikit.views
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -24,6 +31,7 @@ import com.stcpay.uikit.theme.Dimensions
 import com.stcpay.uikit.theme.StcPayTheme
 import com.stcpay.uikit.theme.PrimaryButtonBorderColor
 import com.stcpay.uikit.R
+import com.stcpay.uikit.theme.BorderDisabledSecondary
 import com.stcpay.uikit.theme.White
 
 
@@ -101,6 +109,37 @@ fun ColumnScope.WrappedPrimaryButton(
     Spacer(Modifier.height(Dimensions.dp4))
 }
 
+@Composable
+fun DoubleTextWithArrowButton(leadingText: String, trailingText: String) {
+    Row(
+        Modifier
+            .border(
+                1.dp,
+                BorderDisabledSecondary,
+                shape = RoundedCornerShape(Dimensions.dp10)
+            )
+            .padding(Dimensions.dp16),
+        verticalAlignment = Alignment.CenterVertically
+
+    ) {
+        Text(
+            leadingText,
+            style = MaterialTheme.typography.headlineMedium
+        )
+        Spacer(Modifier.weight(1f))
+        Text(
+            trailingText,
+            style = MaterialTheme.typography.titleMedium.copy(MaterialTheme.colorScheme.primary)
+        )
+        Spacer(Modifier.width(Dimensions.dp4))
+        Icon(
+            Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            contentDescription = stringResource(R.string.next),
+            tint = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 private fun ButtonComponentsPreview(modifier: Modifier = Modifier) {
@@ -108,6 +147,12 @@ private fun ButtonComponentsPreview(modifier: Modifier = Modifier) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             PrimaryButton(text = "Primary Button") {}
             SecondaryButton(text = "Secondary Button") {}
+            DoubleTextWithArrowButton(
+                leadingText = stringResource(R.string.preferred_language),
+                trailingText = stringResource(
+                    R.string.english
+                )
+            )
         }
     }
 }
