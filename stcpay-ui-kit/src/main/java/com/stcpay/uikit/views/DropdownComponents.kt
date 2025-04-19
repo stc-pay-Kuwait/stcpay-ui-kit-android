@@ -73,7 +73,7 @@ fun CustomDropdown(
                         shape = RoundedCornerShape(Dimensions.dp10)
                     )
                     .fillMaxWidth()
-                    .padding(horizontal = Dimensions.dp16, vertical = Dimensions.dp16)
+                    .padding(horizontal = Dimensions.dp16, vertical = Dimensions.dp18)
                     .clickable(onClick = onDropdownClick),
                 verticalAlignment = Alignment.CenterVertically
             ) {

@@ -141,9 +141,12 @@ fun CheckBoxList(
                 Text(
                     text = item.key,
                     style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(start = Dimensions.dp16)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                        .padding(start = Dimensions.dp16)
                 )
-                Spacer(Modifier.weight(1f))
+                Spacer(modifier = Modifier.width(Dimensions.dp5))
                 RoundedCheckBox(
                     size = Dimensions.dp20,
                     radius = Dimensions.dp4,
